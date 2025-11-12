@@ -7,7 +7,7 @@
   "scripts": {
     "build": "sass src/main.scss dist/styles.css --style compressed",
     "watch": "sass --watch src/main.scss dist/styles.css --style expanded",
-    "dev": "sass  src/main.scss dist/styles.css --style expanded"
+    "dev": "sass  src/main.scss dist/styles.css --style compressed"
   },
   "keywords": [
     "css",

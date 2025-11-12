@@ -6,8 +6,15 @@
 
 // CSS kurallarını oluşturur (tek veya çoklu property)
 @mixin _generate-rules($property-or-list, $value) {
-  @if meta.type-of($property-or-list) == 'list' {
-    // Çoklu property (width, height) -> her biri için kural oluştur
+
+  // Eğer value bir map ise (font-size: 1rem, line-height: 1.5 gibi)
+  @if meta.type-of($value) == 'map' {
+    @each $prop, $val in $value {
+      #{$prop}: $val;
+    }
+  }
+    // Eğer property bir liste ise (width, height)
+  @else if meta.type-of($property-or-list) == 'list' {
     @each $property in $property-or-list {
       #{$property}: $value;
     }

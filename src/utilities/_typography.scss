@@ -2,5 +2,32 @@
 @use "../mixins" as mix;
 
 @include mix.generate-utility(font-family, font, var.$font-families);
-
 @include mix.generate-multi-utility((font-size line-height), text, var.$font-sizes);
+@include mix.generate-utility(font-style, null, var.$font-styles);
+@include mix.generate-utility(font-weight, font, var.$font-weights);
+@include mix.generate-utility(font-stretch, font-stretch, var.$font-stretch-values);
+@include mix.generate-utility(font-variant-numeric, font-variant-numeric, var.$font-variant-numeric-values);
+@include mix.generate-utility(letter-spacing, tracking, var.$letter-spacing-values);
+@include mix.generate-utility(line-clamp, line-clamp, var.$line-clamp-values);
+@include mix.generate-utility(line-height, leading, var.$leading-values);
+@include mix.generate-utility(list-style-position, list, var.$list-style-position-values);
+@include mix.generate-utility(list-style-type, list-type, var.$list-style-type-values);
+@include mix.generate-utility(text-align, text, var.$text-align-values);
+@include mix.generate-utility(text-decoration-line, null, var.$text-decoration-line-values);
+@include mix.generate-utility(text-decoration-style, decoration, var.$text-decoration-style-values);
+@include mix.generate-utility(text-decoration-thickness, decoration, var.$list-decoration-thickness);
+@include mix.generate-utility(text-underline-offset, underline-offset, var.$underline-offset-values);
+@include mix.generate-utility(text-transform, null, var.$text-transform-values);
+@include mix.generate-utility(text-overflow, text, var.$text-overflow-values);
+@include mix.generate-utility(text-wrap, text, var.$text-wrap-values);
+@include mix.generate-utility(text-indent, indent, var.$sizing);
+@include mix.generate-negative-utilities(text-indent, indent, var.$sizing);
+@include mix.generate-utility(vertical-align, v-align, var.$vertical-align-values);
+@include mix.generate-utility(white-space, whitespace, var.$white-space-values);
+@include mix.generate-utility(word-break, break, var.$word-break-values);
+@include mix.generate-utility(overflow-wrap, wrap, var.$overflow-wrap-values);
+@include mix.generate-utility(hyphens, hyphens, var.$hyphens-values);
+@include mix.generate-utility(content, content, var.$content-values);
+
+
+

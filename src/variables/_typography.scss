@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $font-families: (
         sans: "ui-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
         serif: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
@@ -31,3 +33,207 @@ $font-weights: (
         extrabold: 800,
         "black": 900
 ) !default;
+
+$font-styles: (
+        italic: italic,
+        "not-italic": normal
+) !default;
+
+$font-stretch-values: (
+        ultra-condensed: 50%,
+        extra-condensed: 62.5%,
+        condensed: 75%,
+        semi-condensed: 87.5%,
+        normal: 100%,
+        semi-expanded: 112.5%,
+        expanded: 125%,
+        extra-expanded: 150%,
+        ultra-expanded: 200%
+) !default;
+
+$font-variant-numeric-values: (
+        normal: normal,
+        ordinal: ordinal,
+        slashed-zero: slashed-zero,
+        lining-nums: lining-nums,
+        oldstyle-nums: oldstyle-nums,
+        proportional-nums: proportional-nums,
+        tabular-nums: tabular-nums,
+        diagonal-fractions: diagonal-fractions,
+        stacked-fractions: stacked-fractions
+) !default;
+
+$letter-spacing-values: (
+        tighter: -0.05em,
+        tight: -0.025em,
+        normal: 0em,
+        wide: 0.025em,
+        wider: 0.05em,
+        widest: 0.1em
+) !default;
+
+$leading-values: (
+        none: 1,
+        tight: 1.25,
+        snug: 1.375,
+        normal: 1.5,
+        relaxed: 1.625,
+        loose: 2
+) !default;
+
+$list-style-position-values: (
+        inside: inside,
+        outside: outside
+) !default;
+
+
+$line-clamp-values: (
+        none: (
+                overflow: visible,
+                display: block,
+                "-webkit-box-orient": horizontal,
+                "-webkit-line-clamp": unset
+        )
+) !default;
+
+
+@for $i from 1 through 10 {
+  $line-clamp-values: map.merge(
+                  $line-clamp-values,
+                  (
+                          $i: (
+                                  overflow: hidden,
+                                  display: -webkit-box,
+                                  "-webkit-box-orient": vertical,
+                                  "-webkit-line-clamp": $i
+                          )
+                  )
+  );
+}
+
+$list-style-type-values: (
+        none: none,
+        disc: disc,
+        decimal: decimal
+) !default;
+
+$text-align-values: (
+        left: left,
+        center: center,
+        right: right,
+        justify: justify,
+        start: start,
+        end: end
+) !default;
+
+$text-decoration-line-values: (
+        underline: underline,
+        overline: overline,
+        "line-through": line-through,
+        "no-underline": none
+) !default;
+
+$text-decoration-style-values: (
+        solid: solid,
+        double: double,
+        dotted: dotted,
+        dashed: dashed,
+        wavy: wavy
+) !default;
+
+$list-decoration-thickness: (
+        "auto": auto,
+        "from-font": from-font,
+        1: 1px,
+        2: 2px,
+        4: 4px
+);
+$text-transform-values: (
+        uppercase: uppercase,
+        lowercase: lowercase,
+        capitalize: capitalize,
+        "normal-case": none
+) !default;
+
+$underline-offset-values: (
+        auto: auto,
+        0: 0px,
+        1: 1px,
+        2: 2px,
+        4: 4px,
+        8: 8px,
+        "-1": calc(1px * -1),
+        "-2": calc(2px * -1),
+        "-4": calc(4px * -1),
+        "-8": calc(8px * -1)
+) !default;
+
+$text-transform-values: (
+        uppercase: uppercase,
+        lowercase: lowercase,
+        capitalize: capitalize,
+        normal-case: none
+) !default;
+
+$text-overflow-values: (
+        truncate: (
+                overflow: hidden,
+                text-overflow: ellipsis,
+                white-space: nowrap
+        ),
+        ellipsis: (
+                text-overflow: ellipsis
+        ),
+        clip: (
+                text-overflow: clip
+        )
+) !default;
+
+$text-wrap-values: (
+        wrap: wrap,
+        nowrap: nowrap,
+        balance: balance,
+        pretty: pretty
+) !default;
+
+$vertical-align-values: (
+        baseline: baseline,
+        top: top,
+        middle: middle,
+        bottom: bottom,
+        "text-top": text-top,
+        "text-bottom": text-bottom,
+        sub: sub,
+        super: super
+) !default;
+
+$white-space-values: (
+        normal: normal,
+        nowrap: nowrap,
+        pre: pre,
+        "pre-line": pre-line,
+        "pre-wrap": pre-wrap,
+        "break-spaces": break-spaces
+) !default;
+
+$word-break-values: (
+        normal: normal,
+        "break-all": break-all,
+        "keep-all": keep-all
+) !default;
+
+$overflow-wrap-values: (
+        "break-word": break-word,
+        anywhere: anywhere,
+        normal: normal
+) !default;
+
+$hyphens-values: (
+        none: none,
+        manual: manual,
+        auto: auto
+) !default;
+$content-values: (
+        none: none
+) !default;
+
