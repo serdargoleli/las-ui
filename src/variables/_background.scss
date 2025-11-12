@@ -1,0 +1,45 @@
+$background-attachment-values: (
+        fixed: fixed,
+        local: local,
+        scroll: scroll
+) !default;
+
+$background-clip-values: (
+        border: border-box,
+        padding: padding-box,
+        content: content-box,
+        text: text
+) !default;
+
+$background-origin-values: (
+        border: border-box,
+        padding: padding-box,
+        content: content-box
+) !default;
+
+$background-position-values: (
+        "top-left": top left,
+        top: top,
+        "top-right": top right,
+        left: left,
+        center: center,
+        right: right,
+        "bottom-left": bottom left,
+        bottom: bottom,
+        "bottom-right": bottom right
+) !default;
+
+$background-repeat-values: (
+        repeat: repeat,
+        "repeat-x": repeat-x,
+        "repeat-y": repeat-y,
+        space: space,
+        round: round,
+        "no-repeat": no-repeat
+) !default;
+
+$background-size-values: (
+        auto: auto,
+        cover: cover,
+        contain: contain
+) !default;

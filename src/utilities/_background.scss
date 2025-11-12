@@ -1,0 +1,9 @@
+@use "../variables" as var;
+@use "../mixins" as mix;
+
+@include mix.generate-utility(background-attachment, bg, var.$background-attachment-values);
+@include mix.generate-utility(background-clip, bg-clip, var.$background-clip-values);
+@include mix.generate-utility(background-origin, bg-origin, var.$background-origin-values);
+@include mix.generate-utility(background-position, bg, var.$background-position-values);
+@include mix.generate-utility(background-repeat, bg, var.$background-repeat-values);
+@include mix.generate-utility(background-size, bg, var.$background-size-values);
