@@ -23,5 +23,13 @@
 
 @include mix.generate-utility("flex-grow", "grow", var.$flex-values-sizing);
 @include mix.generate-utility("flex-shrink", "shrink", var.$flex-values-sizing);
+
 @include mix.generate-utility("order", "order", var.$order-values);
 @include mix.generate-negative-utilities("order", "order", var.$order-values);
+
+@include mix.generate-utility("order", "order", var.$order-values);
+
+@include mix.generate-utility("flex-basis", "basis", var.$flex-basis);
+@include mix.generate-utility("flex-basis", "basis", var.$sizing);
+@include mix.generate-utility("flex-basis", "basis", var.$fractions);
+

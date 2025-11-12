@@ -23,18 +23,22 @@
   }
 }
 
+// classbane oluşturucu fonksyion DRY'a uygun olması için
 @mixin _generate-utility-classes-for-scope($property, $class-prefix, $values, $responsive-prefix: null) {
   @each $key, $value in $values {
     $cls-name: "";
     $key-str: if(meta.type-of($key) == 'number', "#{$key}", $key);
 
+    // grow-1 yerine grow yazması için variableda key "" ise direkt kendi adını basar // display-flex yerine, flex yazması için
     @if $key == "" {
-      $cls-name: if($class-prefix == null, "", $class-prefix) ;
-    } @else if string.slice($key-str, 1, 1) == "-"  and $class-prefix != null {
+      $cls-name: if($class-prefix == null, "", $class-prefix);
+    }
+      // Eğer key - ile başlıyorsa (örnek: "-1") ve prefix varsa (order), -order-1 şeklinde class adı oluşturur.
+    @else if string.slice($key-str, 1, 1) == "-"  and $class-prefix != null {
       $cls-name: "-#{$class-prefix}-#{string.slice($key-str, 2)}";
-    } @else if string.slice($key-str, 1, 1) == "-" {
-      $cls-name: $key;
-    } @else {
+    }
+      // En standart durum: shrink-1, order-2, m-4 gibi class adlarını üretir.
+    @else {
       $cls-name: if($class-prefix == null, $key, "#{$class-prefix}-#{$key}");
     }
 
