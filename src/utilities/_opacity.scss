@@ -1,0 +1,4 @@
+@use "../mixins" as mix;
+@use "../variables" as var;
+
+@include mix.generate-utility(opacity, opacity, var.$opacity-scale)
