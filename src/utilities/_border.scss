@@ -1,0 +1,42 @@
+@use "sass:string";
+@use "sass:map";
+@use "../mixins" as mix;
+@use "../variables" as var;
+@use "../core/functions" as func;
+
+
+@each $side-key, $side-prop in var.$border-sides {
+  $width-values: ();
+  @each $width-key, $width-val in var.$border-width {
+    @if $width-val == 0 {
+      $width-values: map.merge($width-values, (
+              $width-key: (
+                      #{$side-prop}-width: 0,
+                      #{$side-prop}-style: none
+              )
+      ));
+    } @else {
+      $width-values: map.merge($width-values, (
+              $width-key: (
+                      #{$side-prop}-width: #{$width-val},
+                      #{$side-prop}-style: solid
+              )
+      ));
+    }
+  }
+
+  // Multi-utility ile üret
+  @include mix.generate-multi-utility(null, $side-key, $width-values);
+}
+
+// 2. Style classları - Her side için ayrı
+@each $side-key, $side-prop in var.$border-sides {
+  $property: if($side-key == "border", border-style, #{$side-prop}-style);
+  $prefix: $side-key;
+  @include mix.generate-utility($property, $prefix, var.$border-style);
+}
+
+
+@each $class-prefix, $props in var.$border-radius-areas {
+  @include mix.generate-multi-utility($props, $class-prefix, var.$border-radius-scale);
+}

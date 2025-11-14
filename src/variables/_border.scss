@@ -1,0 +1,59 @@
+$border-width: (
+        "0":0,
+        "": 1px,
+        "2":2px,
+        "4":4px,
+        "8":8px
+);
+
+$border-sides: (
+        border:border,
+        "border-s":border-inline-start,
+        "border-e":border-inline-end,
+        "border-t":border-top,
+        "border-b":border-bottom,
+        "border-l":border-left,
+        "border-r":border-right,
+        "border-x": border-inline,
+        "border-y": border-block,
+);
+
+$border-style: (
+        "solid": solid,
+        "dashed": dashed,
+        "dotted": dotted,
+        "double": double,
+        "none": none,
+        "hidden": hidden,
+);
+
+$border-radius-scale: (
+        none: 0,
+        "": 0.25rem,
+        xs: 0.125rem,
+        sm: 0.25rem,
+        md: 0.375rem,
+        lg: 0.5rem,
+        xl: 0.75rem,
+        2xl: 1rem,
+        3xl: 1.5rem,
+        full: 9999px
+) !default;
+
+$border-radius-areas: (
+        "rounded": (border-radius),
+        "rounded-t": (border-top-left-radius, border-top-right-radius),
+        "rounded-r": (border-top-right-radius, border-bottom-right-radius),
+        "rounded-b": (border-bottom-right-radius, border-bottom-left-radius),
+        "rounded-l": (border-top-left-radius, border-bottom-left-radius),
+        "rounded-s": (border-start-start-radius, border-end-start-radius),
+        "rounded-e": (border-start-end-radius, border-end-end-radius),
+        "rounded-ss": (border-start-start-radius),
+        "rounded-se": (border-start-end-radius),
+        "rounded-ee": (border-end-end-radius),
+        "rounded-es": (border-end-start-radius),
+        "rounded-tl": (border-top-left-radius),
+        "rounded-tr": (border-top-right-radius),
+        "rounded-br": (border-bottom-right-radius),
+        "rounded-bl": (border-bottom-left-radius)
+) !default;
