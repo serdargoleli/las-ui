@@ -13,5 +13,6 @@
   @include mix.generate-multi-utility(null, "outline", $outline-values);
 }
 
-
-@include mix.generate-utility(outline-offset, outline-offset, var.$border-width);
+@include mix.generate-utility(outline-offset, outline-offset, var.$outline-width);
+@include mix.generate-negative-utilities(outline-offset, outline-offset, var.$outline-width);
+@include mix.generate-multi-utility(null, "outline", var.$outline-style-map);

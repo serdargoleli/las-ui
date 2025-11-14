@@ -1,0 +1,21 @@
+$outline-width: (
+        "0":0,
+        "1":1px,
+        "2":2px,
+        "3":4px,
+        "4":8px
+);
+
+$outline-style-map: (
+        "solid": (outline-style: solid),
+        "dashed": (outline-style: dashed),
+        "dotted": (outline-style: dotted),
+        "double": (outline-style: double),
+
+        "none": (outline-style: none),
+
+        "hidden": (
+                outline: 2px solid transparent,
+                outline-offset: 2px
+        )
+);
