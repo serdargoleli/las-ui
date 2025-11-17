@@ -1,0 +1,74 @@
+@use "sass:map";
+@use "sass:meta";
+@use "../variables" as var;
+@use "../mixins/generate_utility" as mix;
+
+@mixin generate-rotate-utilities($axis, $class-prefix, $css-var) {
+  $positive-values: ();
+  @each $key, $value in var.$rotate-values {
+    @if $axis == "" {
+      $positive-values: map.merge($positive-values, ($key: rotate(#{$value})));
+    } @else {
+      $positive-values: map.merge($positive-values, ($key: rotate#{$axis}(#{$value})));
+    }
+  }
+  @include mix.generate-utility($css-var, $class-prefix, $positive-values);
+
+  $negative-values: ();
+  @each $key, $value in var.$rotate-values {
+    @if $value != 0deg and $value != 0 {
+      @if $axis == "" {
+        $negative-values: map.merge($negative-values, ("-#{$key}": rotate(-#{$value})));
+      } @else {
+        $negative-values: map.merge($negative-values, ("-#{$key}": rotate#{$axis}(-#{$value})));
+      }
+    }
+  }
+
+  @include mix.generate-utility($css-var, $class-prefix, $negative-values);
+}
+@mixin generate-skew-utilities($axis, $class-prefix, $css-var) {
+  $positive-values: ();
+  @each $key, $value in var.$skew-values {
+    $positive-values: map.merge($positive-values, ($key: skew#{$axis}(#{$value})));
+  }
+
+  @include mix.generate-utility($css-var, $class-prefix, $positive-values);
+
+  $negative-values: ();
+  @each $key, $value in var.$skew-values {
+    @if $value != 0deg and $value != 0 {
+      $negative-values: map.merge($negative-values, ("-#{$key}": skew#{$axis}(-#{$value})));
+    }
+  }
+
+  @include mix.generate-utility($css-var, $class-prefix, $negative-values);
+}
+@mixin generate-scale-utilities($axis, $class-prefix, $css-var) {
+  $positive-values: ();
+  @each $key, $value in var.$scale-values {
+    @if $axis == "" {
+      $positive-values: map.merge($positive-values, ($key: scale(#{$value})));
+    } @else {
+      $positive-values: map.merge($positive-values, ($key: scale#{$axis}(#{$value})));
+    }
+  }
+
+  @include mix.generate-utility($css-var, $class-prefix, $positive-values);
+
+  $negative-values: ();
+  @each $key, $value in var.$scale-values {
+    @if $value != 0 and $value != 0% {
+      @if $axis == "" {
+        $negative-values: map.merge($negative-values, ("-#{$key}": scale(-#{$value})));
+      } @else {
+        $negative-values: map.merge($negative-values, ("-#{$key}": scale#{$axis}(-#{$value})));
+      }
+    }
+  }
+
+  @include mix.generate-utility($css-var, $class-prefix, $negative-values);
+}
+
+
+

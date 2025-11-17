@@ -1,0 +1,76 @@
+@use "sass:map";
+@use "sass:string";
+@use "../variables" as var;
+@use "../mixins" as mix;
+
+@include mix.generate-utility(backface-visibility, backface, var.$backface-scale);
+@include mix.generate-utility(perspective, perspective, var.$perspective-scale);
+@include mix.generate-utility(perspective-origin, perspective-origin, var.$perspective-origin-scale);
+
+
+.transform {
+  --las-rotate: ;
+  --las-rotate-x: ;
+  --las-rotate-y: ;
+  --las-rotate-z: ;
+  --las-skew-x: ;
+  --las-skew-y: ;
+  --las-scale: ;
+  --las-scale-x: ;
+  --las-scale-y: ;
+  --las-scale-z: ;
+  transform: var(--las-scale) var(--las-scale-x) var(--las-scale-y) var(--las-scale-z) var(--las-rotate) var(--las-rotate-x) var(--las-rotate-y) var(--las-rotate-z) var(--las-skew-x) var(--las-skew-y);
+}
+
+$rotate-2d-values: ();
+@each $key, $value in var.$rotate-values {
+  $rotate-2d-values: map.merge($rotate-2d-values, ($key: rotate(#{$value})));
+}
+
+$rotate-x-values: ();
+@each $key, $value in var.$rotate-values {
+  $rotate-x-values: map.merge($rotate-x-values, (
+          $key: rotateX(#{$value})
+  ));
+}
+
+$rotate-y-values: ();
+@each $key, $value in var.$rotate-values {
+  $rotate-y-values: map.merge($rotate-y-values, (
+          $key: rotateY(#{$value})
+  ));
+}
+
+$rotate-z-values: ();
+@each $key, $value in var.$rotate-values {
+  $rotate-z-values: map.merge($rotate-z-values, (
+          $key: rotateZ(#{$value})
+  ));
+}
+
+
+@include mix.generate-rotate-utilities("", "rotate", --las-rotate);
+@include mix.generate-rotate-utilities("X", "rotate-x", --las-rotate-x);
+@include mix.generate-rotate-utilities("Y", "rotate-y", --las-rotate-y);
+@include mix.generate-rotate-utilities("Z", "rotate-z", --las-rotate-z);
+@include mix.generate-skew-utilities("X", "skew-x", --las-skew-x);
+@include mix.generate-skew-utilities("Y", "skew-y", --las-skew-y);
+@include mix.generate-skew-utilities("Y", "skew-y", --las-skew-y);
+@include mix.generate-utility(transform-origin, transform-origin, var.$transform-origin-scale);
+
+$scale-2d-map: ();
+$scale-x-map: ();
+$scale-y-map: ();
+$scale-z-map: ();
+
+@each $key, $value in var.$scale-values {
+  $scale-2d-map: map.merge($scale-2d-map, ($key: scale(#{$value})));
+  $scale-x-map: map.merge($scale-x-map, ($key: scaleX(#{$value})));
+  $scale-y-map: map.merge($scale-y-map, ($key: scaleY(#{$value})));
+  $scale-z-map: map.merge($scale-z-map, ($key: scaleZ(#{$value})));
+}
+
+@include mix.generate-scale-utilities("", "scale", "--las-scale");
+@include mix.generate-scale-utilities("X", "scale-x", "--las-scale-x");
+@include mix.generate-scale-utilities("Y", "scale-y", "--las-scale-y");
+@include mix.generate-scale-utilities("Z", "scale-z", "--las-scale-z");
