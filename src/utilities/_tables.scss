@@ -1,0 +1,7 @@
+@use "../variables" as var;
+@use "../mixins" as mix;
+
+@include mix.generate-utility(border-collapse, border, var.$border-collapse);
+@include mix.generate-utility(border-spacing, border-spacing, var.$sizing);
+@include mix.generate-utility(table-layout, table, var.$table-layout);
+@include mix.generate-utility(caption-side, "caption", var.$caption-scale);
