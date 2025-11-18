@@ -74,3 +74,23 @@ $scale-z-map: ();
 @include mix.generate-scale-utilities("X", "scale-x", "--las-scale-x");
 @include mix.generate-scale-utilities("Y", "scale-y", "--las-scale-y");
 @include mix.generate-scale-utilities("Z", "scale-z", "--las-scale-z");
+
+$transform-style-values: (
+        "3d": preserve-3d,
+        "flat": flat
+) !default;
+
+@include mix.generate-utility(transform-style, transform, $transform-style-values);
+
+
+.translate {
+  --las-translate-x: ;
+  --las-translate-y: ;
+  --las-translate-z: ;
+  translate: var(--las-translate-x, 0) var(--las-translate-y, 0) var(--las-translate-z, 0);
+}
+
+@include mix.generate-translate-utilities("x", "translate-x", --las-translate-x);
+@include mix.generate-translate-utilities("y", "translate-y", --las-translate-y);
+@include mix.generate-translate-utilities("z", "translate-z", --las-translate-z);
+@include mix.generate-translate-both-utilities("translate");

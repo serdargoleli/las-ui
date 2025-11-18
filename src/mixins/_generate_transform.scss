@@ -2,6 +2,8 @@
 @use "sass:meta";
 @use "../variables" as var;
 @use "../mixins/generate_utility" as mix;
+@use "../core/functions" as func;
+
 
 @mixin generate-rotate-utilities($axis, $class-prefix, $css-var) {
   $positive-values: ();
@@ -27,6 +29,7 @@
 
   @include mix.generate-utility($css-var, $class-prefix, $negative-values);
 }
+
 @mixin generate-skew-utilities($axis, $class-prefix, $css-var) {
   $positive-values: ();
   @each $key, $value in var.$skew-values {
@@ -44,6 +47,7 @@
 
   @include mix.generate-utility($css-var, $class-prefix, $negative-values);
 }
+
 @mixin generate-scale-utilities($axis, $class-prefix, $css-var) {
   $positive-values: ();
   @each $key, $value in var.$scale-values {
@@ -68,6 +72,51 @@
   }
 
   @include mix.generate-utility($css-var, $class-prefix, $negative-values);
+}
+
+@mixin generate-translate-utilities($axis, $class-prefix, $css-var) {
+  $merge-size-values: func.merge-maps(var.$sizing, var.$fractions, (none: none));
+
+  @include mix.generate-utility($css-var, $class-prefix, $merge-size-values);
+
+  $negative-values: ();
+  @each $key, $value in $merge-size-values {
+    @if meta.type-of($value) == "number" and $value != 0 {
+      $negative-values: map.merge($negative-values, ("-#{$key}": -$value));
+    }
+  }
+
+  @include mix.generate-utility($css-var, $class-prefix, $negative-values);
+}
+
+@mixin generate-translate-both-utilities($class-prefix) {
+  $merge-size-values: func.merge-maps(var.$sizing, var.$fractions, (none: none));
+
+  $positive-both: ();
+  @each $key, $value in $merge-size-values {
+    $positive-both: map.merge($positive-both, (
+            $key: (
+                    --las-translate-x: $value,
+                    --las-translate-y: $value
+            )
+    ));
+  }
+
+  @include mix.generate-utility(null, $class-prefix, $positive-both);
+
+  $negative-both: ();
+  @each $key, $value in $merge-size-values {
+    @if meta.type-of($value) == "number" and $value != 0 {
+      $negative-both: map.merge($negative-both, (
+              "-#{$key}": (
+                      --las-translate-x: -$value,
+                      --las-translate-y: -$value
+              )
+      ));
+    }
+  }
+
+  @include mix.generate-utility(null, $class-prefix, $negative-both);
 }
 
 
