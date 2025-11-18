@@ -1,5 +1,6 @@
 @use "../mixins" as mix;
 @use "../variables" as var;
+@use "../core/functions" as func;
 
 @each $dir, $property in var.$padding-directions {
   $class-prefix: if($dir == "", "p", "p#{$dir}");
@@ -18,12 +19,11 @@
   @include mix.generate-utility($property, $class-prefix, var.$sizing);
 }
 
+$inset-sizing: func.merge-maps(var.$sizing,var.$fractions,(full: 100%, auto: auto));
 @each $dir, $property in var.$inset-directions {
   $class-prefix: $dir;
-  @include mix.generate-utility($property, $class-prefix, var.$sizing);
-  @include mix.generate-negative-utilities($property, $class-prefix, var.$sizing);
-  @include mix.generate-utility($property, $class-prefix, var.$fractions);
-  @include mix.generate-negative-utilities($property, $class-prefix, var.$fractions);
+  @include mix.generate-utility($property, $class-prefix, $inset-sizing);
+  @include mix.generate-negative-utilities($property, $class-prefix, $inset-sizing);
 }
 
 @each $dir, $property in var.$scroll-margin-directions {

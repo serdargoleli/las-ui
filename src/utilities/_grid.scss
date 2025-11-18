@@ -58,3 +58,6 @@
 @include mix.generate-utility("place-content", "place-content", var.$place-content-values);
 @include mix.generate-utility("place-items", "place-items", var.$place-items-values);
 @include mix.generate-utility("place-self", "place-self", var.$place-self-values);
+
+@include mix.generate-utility(columns, columns, var.$columns-sizes);
+@include mix.generate-utility(columns, columns, var.$grid-numbers);

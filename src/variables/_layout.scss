@@ -1,0 +1,111 @@
+@use "sass:map";
+
+$aspect-ratios: (
+        "auto": auto,
+        "square": "1 / 1",
+        "video": "16 / 9"
+);
+$before-and-after-values: (
+        "auto": auto,
+        "avoid": avoid,
+        "all": all,
+        "avoid-page": avoid-page,
+        "page": page,
+        "left": left,
+        "right": right,
+        "column": column
+);
+
+$break-inside-values: (
+        "auto": auto,
+        "avoid": avoid,
+        "avoid-page": avoid-page,
+        "avoid-column": avoid-column
+);
+
+$box-decoration-break-values: (
+        "clone": clone,
+        "slice": slice
+);
+$box-sizing-values: (
+        "border": border-box,
+        "content": content-box
+);
+$float-values: (
+        "right": right,
+        "left": left,
+        "start": inline-start,
+        "end": inline-end,
+        "none": none
+);
+$clear-values: (
+        "left": left,
+        "right": right,
+        "both": both,
+        "start": inline-start,
+        "end": inline-end,
+        "none": none
+);
+$isolation-values: (
+        "isolate": isolate,
+        "auto": auto
+);
+$object-fit-values: (
+        "contain": contain,
+        "cover": cover,
+        "fill": fill,
+        "none": none,
+        "scale-down": scale-down
+);
+$object-position-values: (
+        "top-left": top left,
+        "top": top,
+        "top-right": top right,
+        "left": left,
+        "center": center,
+        "right": right,
+        "bottom-left": bottom left,
+        "bottom": bottom,
+        "bottom-right": bottom right
+);
+$overflow-values: (
+        "auto": auto,
+        "hidden": hidden,
+        "clip": clip,
+        "visible": visible,
+        "scroll": scroll
+);
+$overscroll-values: (
+        "auto": auto,
+        "contain": contain,
+        "none": none
+);
+
+$position-values: (
+        "static": static,
+        "fixed": fixed,
+        "absolute": absolute,
+        "relative": relative,
+        "sticky": sticky
+);
+
+$visibility-values: (
+        "visible": visible,
+        "invisible": hidden,
+        "collapse": collapse
+);
+
+$z-values: (
+        "auto": auto
+);
+
+@for $i from 10 through 150 {
+  @if $i % 10 == 0 {
+    $z-values: map.merge($z-values, ($i: $i));
+  }
+}
+
+$forced-color-adjust-values: (
+        "auto": auto,
+        "none": none
+);

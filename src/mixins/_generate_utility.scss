@@ -73,12 +73,12 @@
 @mixin generate-utility($property, $class-prefix, $values) {
   @include _generate-utility-scope($property, $class-prefix, $values);
 
-  @each $bp, $size in var.$breakpoints {
-    @include responsive($bp) {
-      $escaped-bp: func.escape-start-number($bp);
-      @include _generate-utility-scope($property, $class-prefix, $values, $escaped-bp);
-    }
-  }
+  //@each $bp, $size in var.$breakpoints {
+  //  @include responsive($bp) {
+  //    $escaped-bp: func.escape-start-number($bp);
+  //    @include _generate-utility-scope($property, $class-prefix, $values, $escaped-bp);
+  //  }
+  //}
 }
 
 // Public API: Negatif değerler için utility oluşturur
