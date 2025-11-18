@@ -31,7 +31,8 @@ Veya pnpm için:
 CDN (jsDelivr) ile kullanmak için:
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/las-css/dist/las.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/las-css/dist/styles.css" rel="stylesheet">
 ```
 
 ---
@@ -41,7 +42,8 @@ CDN (jsDelivr) ile kullanmak için:
 SCSS projesinde import edin:
 
 ```scss
-@use "las-css" as las;
+// Eğer Sass load-path kullanıyorsan:
+@use "las-css/dist/main" as las;
 ```
 
 HTML’de utility sınıflarını kullanın:
