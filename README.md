@@ -40,21 +40,13 @@ Projenizin ana giriş dosyasına (örneğin `main.jsx`, `App.tsx` veya `index.js
 import "las-css";
 ```
 
-Veya minified versiyonu için:
-
-```javascript
-import "las-css/style.min.css";
-```
+> **Not:** Paket otomatik olarak minified CSS dosyasını (`style.min.css`) yükler.
 
 ### 2. CDN (Tarayıcı)
 
 Paketi indirmeden doğrudan HTML içinde kullanmak için:
 
 ```html
-<!-- Style (Normal) -->
-<link href="https://cdn.jsdelivr.net/npm/las-css@latest/dist/style.css" rel="stylesheet">
-
-<!-- Style (Minified) -->
 <link href="https://cdn.jsdelivr.net/npm/las-css@latest/dist/style.min.css" rel="stylesheet">
 ```
 
