@@ -1,6 +1,6 @@
 {
   "name": "las-css",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "LAS CSS – Lightweight, modern, utility-first CSS framework built with SCSS for fast, responsive, and maintainable web design. Ideal for building responsive layouts without JavaScript.",
   "main": "dist/styles.css",
   "sass": "dist/styles.scss",
