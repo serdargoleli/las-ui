@@ -1,0 +1,13 @@
+@use "variables/index" as *;
+
+:root {
+  /* Breakpoints */
+  @each $name, $value in $breakpoints {
+    --las-breakpoint-#{$name}: #{$value};
+  }
+
+  /* Variants */
+  @each $name, $value in $variants {
+    --las-variant-#{$name}: #{$value};
+  }
+}

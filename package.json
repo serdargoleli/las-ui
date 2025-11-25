@@ -5,6 +5,9 @@
   "main": "dist/style.min.css",
   "style": "dist/style.min.css",
   "types": "index.d.ts",
+  "bin": {
+    "las": "./dist/bin/las.js"
+  },
   "exports": {
     ".": {
       "types": "./index.d.ts",
@@ -29,11 +32,15 @@
     "**/*.scss"
   ],
   "scripts": {
-    "build": "npm run clean && npm run build:minify && npm run copy:assets",
-    "build:minify": "sass src/main.scss dist/style.min.css --style compressed --no-source-map",
-    "copy:assets": "cp README.md dist/ && cp LICENSE dist/",
+    "build": "npm run clean && npm run build:engine && npm run build:base && npm run build:utility && npm run build:meta && npm run build:main && npm run copy:assets",
+    "build:engine": "tsc",
+    "build:base": "sass src/base.scss dist/base.min.css --style compressed --no-source-map",
+    "build:utility": "sass src/utility.scss dist/utility.min.css --style compressed --no-source-map",
+    "build:meta": "sass src/meta.scss dist/meta.css --no-source-map",
+    "build:main": "sass src/main.scss dist/style.min.css --style compressed --no-source-map",
+    "copy:assets": "mkdir -p dist/bin && cp bin/las.js dist/bin/ && cp README.md dist/ && cp LICENSE dist/",
     "clean": "rm -rf dist && mkdir -p dist",
-    "watch": "sass --watch src/main.scss dist/style.min.css --style compressed",
+    "watch": "npm run build && sass --watch src/base.scss dist/base.min.css src/utility.scss dist/utility.min.css src/meta.scss dist/meta.css src/main.scss dist/style.min.css --style compressed",
     "dev": "npm run watch"
   },
   "keywords": [
@@ -54,7 +61,11 @@
   "author": "Serdar GOLELI",
   "license": "MIT",
   "devDependencies": {
-    "sass": "^1.94.0"
+    "chokidar": "^4.0.3",
+    "commander": "^14.0.2",
+    "sass": "^1.94.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   },
   "homepage": "https://github.com/serdargoleli/las-ui#readme",
   "repository": {
