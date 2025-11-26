@@ -1,3 +1,4 @@
+import { generateColor } from "./color";
 import { IConfigProps } from "./config";
 
 /**
@@ -13,10 +14,15 @@ import { IConfigProps } from "./config";
 export function generateCss(className: string, cssMap: Map<string, string>, config: IConfigProps) {
     const parts = className.split(':');
     const baseClass = parts[parts.length - 1];
-    const baseCss = cssMap.get(baseClass);
-    console.log("baseCss", baseCss);
+    let baseCss = cssMap.get(baseClass);
     if (!baseCss) {
-        return null; // Class bulunamadı
+        // Eğer cssMap'te yoksa, renk utility'si mi diye kontrol et
+        const colorCss = generateColor(baseClass, config);
+        if (colorCss) {
+            baseCss = colorCss;
+        } else {
+            return null;
+        }
     }
 
 

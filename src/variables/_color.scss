@@ -1,16 +1,20 @@
 $colors: (
-        "blue": #3b82f6,
-        "red": #ef4444,
-        "orange": #f97316,
-        "green": #22c55e,
-        "sky": #0ea5e9,
-        "indigo": #6366f1,
-        "purple": #8b5cf6,
-        "pink": #ec4899,
-        "gray": #6b7280,
-        "white": #ffffff,
-        "black": #000000,
-        "transparent": transparent
+  "blue": #3b82f6,
+  "red": #ef4444,
+  "orange": #f97316,
+  "green": #22c55e,
+  "sky": #0ea5e9,
+  "indigo": #6366f1,
+  "purple": #8b5cf6,
+  "pink": #ec4899,
+  "gray": #6b7280,
+);
+
+$single-colors: (
+  "white": #ffffff,
+  "black": #000000,
+  "transparent": transparent,
+  "current": currentColor
 );
 
 // hangi renklerin css olacağını belirler

@@ -1,5 +1,13 @@
 /* LAS JIT - Auto-generated CSS */
 
-.text-center { text-align:center }
-.flex { display:flex }
-.flex-1 { flex:.25rem }
+.bg-red-200 { background-color: #f9b4b4; }
+.text-blue-300 { color: #89b4fa; }
+.text-black { color: #000000; }
+.text-red-500 { color: #ef4444; }
+.shadow-blue-500 { --las-shadow-color: rgb(59 130 246); }
+.shadow-2xl { box-shadow:0 25px 50px -12px var(--las-shadow-color, rgba(0, 0, 0, 0.25)) }
+.shadow-black { --las-shadow-color: rgb(0 0 0); }
+.shadow-xl { box-shadow:0 20px 25px -5px var(--las-shadow-color, rgba(0, 0, 0, 0.1)),0 8px 10px -6px var(--las-shadow-color, rgba(0, 0, 0, 0.1)) }
+.shadow-lg { box-shadow:0 10px 15px -3px var(--las-shadow-color, rgba(0, 0, 0, 0.1)),0 4px 6px -4px var(--las-shadow-color, rgba(0, 0, 0, 0.1)) }
+.shadow-md { box-shadow:0 4px 6px -1px var(--las-shadow-color, rgba(0, 0, 0, 0.1)),0 2px 4px -2px var(--las-shadow-color, rgba(0, 0, 0, 0.1)) }
+.shadow-sm { box-shadow:0 1px 2px 0 var(--las-shadow-color, rgba(0, 0, 0, 0.05)) }

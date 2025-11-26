@@ -3,6 +3,7 @@
 @use "variables/color" as color;
 
 :root {
+
   /* Breakpoints */
   @each $name, $value in bp.$breakpoints {
     --las-breakpoint-#{$name}: #{$value};
@@ -19,5 +20,9 @@
 
   @each $name, $value in color.$enable-color-utilities {
     --las-config-color-#{$name}: #{$value};
+  }
+
+  @each $name, $value in color.$single-colors {
+    --las-single-color-#{$name}: #{$value};
   }
 }
