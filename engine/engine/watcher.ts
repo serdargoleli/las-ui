@@ -61,11 +61,12 @@ export function startWatcher(options: IWatcherProps) {
         persistent: true,
         ignoreInitial: true,
         awaitWriteFinish: {
-            stabilityThreshold: 100,
-            pollInterval: 50
+            stabilityThreshold: 100, // 100ms boyunca dosya değişmezse “yazma bitti” de
+            pollInterval: 50 //her 50ms dosya hâlâ yazılıyor mu diye bak
         }
     });
 
+    //dosya değiştiğinde çalışır
     watcher.on('change', (filePath) => {
         const newClasses = scanFile(filePath);
         let addedCount = 0;
@@ -78,7 +79,36 @@ export function startWatcher(options: IWatcherProps) {
         if (addedCount > 0) {
             console.log(`   ✨ ${addedCount} yeni class bulundu`);
             writeCSS(usedAllClasses, cssMap, config, options?.outputPath);
+            console.log(`   ✅ CSS güncellendi (toplam ${usedAllClasses.size} class)`);
+        } else {
+            console.log(`   ℹ️  Yeni class yok`);
         }
 
     })
+
+    // yeni dosya eklendğinde çalılır
+    watcher.on('add', (filePath) => {
+        console.log(`\n➕ Yeni dosya: ${path.relative(process.cwd(), filePath)}`);
+
+        const newClasses = scanFile(filePath);
+        let addedCount = 0;
+
+        newClasses.forEach(cls => {
+            if (!usedAllClasses.has(cls)) {
+                usedAllClasses.add(cls);
+                addedCount++;
+            }
+        });
+
+        if (addedCount > 0) {
+            console.log(`   ✨ ${addedCount} class eklendi`);
+            writeCSS(usedAllClasses, cssMap, config, options.outputPath);
+        }
+    });
+
+    process.on('SIGINT', () => {
+        console.log('\n\n👋 LAS JIT  kapatılıyor...');
+        watcher.close();
+        process.exit(0);
+    });
 }

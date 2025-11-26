@@ -1,12 +1,5 @@
 /* LAS JIT - Auto-generated CSS */
 
 .text-center { text-align:center }
-.underline { text-decoration-line:underline }
-@media (min-width: 48rem) {
-  .md\:text-center { text-align:center }
-}
-.text-right { text-align:right }
-.hover\:font-bold:hover { font-weight:700 }
-@media (min-width: 48rem) {
-  .md\:flex { display:flex }
-}
+.flex { display:flex }
+.flex-1 { flex:.25rem }
