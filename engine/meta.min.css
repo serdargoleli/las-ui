@@ -1,1 +1,37 @@
-:root{--las-breakpoint-sm: 40rem;--las-breakpoint-md: 48rem;--las-breakpoint-lg: 64rem;--las-breakpoint-xl: 80rem;--las-breakpoint-2xl: 96rem;--las-variant-hover: :hover;--las-variant-focus: :focus;--las-variant-active: :active;--las-variant-disabled: :disabled;--las-variant-first: :first-child;--las-variant-last: :last-child;--las-variant-odd: :nth-child(odd);--las-variant-even: :nth-child(even)}
+:root {
+    --las-breakpoint-sm: 40rem;
+    --las-breakpoint-md: 48rem;
+    --las-breakpoint-lg: 64rem;
+    --las-breakpoint-xl: 80rem;
+    --las-breakpoint-2xl: 96rem;
+    --las-variant-hover: :hover;
+    --las-variant-focus: :focus;
+    --las-variant-active: :active;
+    --las-variant-disabled: :disabled;
+    --las-variant-first: :first-child;
+    --las-variant-last: :last-child;
+    --las-variant-odd: :nth-child(odd);
+    --las-variant-even: :nth-child(even);
+    --las-color-blue: #3b82f6;
+    --las-color-red: #ef4444;
+    --las-color-orange: #f97316;
+    --las-color-green: #22c55e;
+    --las-color-sky: #0ea5e9;
+    --las-color-indigo: #6366f1;
+    --las-color-purple: #8b5cf6;
+    --las-color-pink: #ec4899;
+    --las-color-gray: #6b7280;
+    --las-color-white: #ffffff;
+    --las-color-black: #000000;
+    --las-color-transparent: transparent;
+    --las-config-color-bg: true;
+    --las-config-color-text: true;
+    --las-config-color-border: true;
+    --las-config-color-outline: true;
+    --las-config-color-decoration: true;
+    --las-config-color-caret: true;
+    --las-config-color-fill: true;
+    --las-config-color-stroke: true;
+    --las-config-color-shadow: true;
+    --las-config-color-text-shadow: true
+}

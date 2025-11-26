@@ -1,5 +1,6 @@
 @use "variables/breakpoint" as bp;
 @use "variables/variant" as variant;
+@use "variables/color" as color;
 
 :root {
   /* Breakpoints */
@@ -10,5 +11,13 @@
   /* Variants */
   @each $name, $value in variant.$variants {
     --las-variant-#{$name}: #{$value};
+  }
+
+  @each $name, $value in color.$colors {
+    --las-color-#{$name}: #{$value};
+  }
+
+  @each $name, $value in color.$enable-color-utilities {
+    --las-config-color-#{$name}: #{$value};
   }
 }

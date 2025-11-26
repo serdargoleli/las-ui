@@ -14,9 +14,12 @@ export function generateCss(className: string, cssMap: Map<string, string>, conf
     const parts = className.split(':');
     const baseClass = parts[parts.length - 1];
     const baseCss = cssMap.get(baseClass);
+    console.log("baseCss", baseCss);
     if (!baseCss) {
         return null; // Class bulunamadı
     }
+
+
     const modifiers = parts.slice(0, -1);
     const escapedClassName = escapeClassName(className);
     let css = `.${escapedClassName} { ${baseCss} }`;

@@ -12,3 +12,17 @@ $colors: (
         "black": #000000,
         "transparent": transparent
 );
+
+// hangi renklerin css olacağını belirler
+$enable-color-utilities: (
+  "bg": true,
+  "text": true,
+  "border": true,
+  "outline": true,
+  "decoration": true,
+  "caret": true,
+  "fill": true,
+  "stroke": true,
+  "shadow": true,
+  "text-shadow": true
+);
