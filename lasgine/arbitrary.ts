@@ -1,4 +1,3 @@
-import { IConfigProps } from "./config";
 
 /**
  * Arbitrary değerler için property mapping

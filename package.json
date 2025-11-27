@@ -2,16 +2,18 @@
   "name": "las-css",
   "version": "1.0.9",
   "description": "LAS CSS, Lightweight, modern, utility-first CSS framework built with SCSS for fast, responsive, and maintainable web design. Ideal for building responsive layouts without JavaScript.",
-  "main": "dist/style.min.css",
+  "main": "dist/lasgine/index.js",
+  "module": "dist/lasgine/index.mjs",
+  "types": "dist/lasgine/index.d.ts",
   "style": "dist/style.min.css",
-  "types": "index.d.ts",
   "exports": {
     ".": {
-      "types": "./index.d.ts",
-      "import": "./dist/style.min.css",
-      "require": "./dist/style.min.css",
-      "default": "./dist/style.min.css"
+      "types": "./dist/lasgine/index.d.ts",
+      "import": "./dist/lasgine/index.mjs",
+      "require": "./dist/lasgine/index.js",
+      "default": "./dist/lasgine/index.mjs"
     },
+    "./css": "./dist/style.min.css",
     "./style.css": "./dist/style.min.css",
     "./style.min.css": "./dist/style.min.css",
     "./dist/*": "./dist/*",
@@ -29,7 +31,7 @@
     "**/*.scss"
   ],
   "scripts": {
-    "build": "npm run clean && npm run build:base && npm run build:utility && npm run build:meta && npm run build:main && npm run copy:assets",
+    "build": "npm run clean && npm run build:base && npm run build:utility && npm run build:meta && npm run build:main && npm run copy:assets & npm run build:jit",
     "build:base": "sass src/base.scss dist/base.min.css --style compressed --no-source-map",
     "build:meta": "sass src/meta.scss dist/meta.min.css --style compressed --no-source-map",
     "build:main": "sass src/main.scss dist/style.min.css --style compressed --no-source-map",
@@ -38,7 +40,8 @@
     "clean": "rm -rf dist && mkdir -p dist",
     "watch": "sass --watch src/main.scss dist/style.min.css --style compressed",
     "dev": "npm run watch",
-    "jit": "ts-node engine/build/lasgine.ts"
+    "jit": "ts-node lasgine/build/lasgine.ts",
+    "build:jit": "tsup lasgine/index.ts --format cjs,esm --dts --minify --out-dir dist/lasgine --target node16 --clean"
   },
   "keywords": [
     "css",
@@ -62,7 +65,8 @@
     "chokidar": "^5.0.0",
     "sass": "^1.94.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "tsup": "^8.5.1"
   },
   "homepage": "https://github.com/serdargoleli/las-ui#readme",
   "repository": {

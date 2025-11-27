@@ -1,4 +1,4 @@
-import { startWatcher } from "../engine/watcher";
+import { startWatcher } from "../watcher";
 
 startWatcher({
     scanDirs: ['src/template'], // TODO: burayı configden oku
