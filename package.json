@@ -6,12 +6,20 @@
   "module": "dist/lasgine/index.mjs",
   "types": "dist/lasgine/index.d.ts",
   "style": "dist/style.min.css",
+  "bin": {
+    "las-ui": "./dist/lasgine/cli.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/lasgine/index.d.ts",
       "import": "./dist/lasgine/index.mjs",
       "require": "./dist/lasgine/index.js",
       "default": "./dist/lasgine/index.mjs"
+    },
+    "./vite": {
+      "types": "./dist/lasgine/index.d.ts",
+      "import": "./dist/lasgine/index.mjs",
+      "require": "./dist/lasgine/index.js"
     },
     "./css": "./dist/style.min.css",
     "./style.css": "./dist/style.min.css",
@@ -41,7 +49,7 @@
     "watch": "sass --watch src/main.scss dist/style.min.css --style compressed",
     "dev": "npm run watch",
     "jit": "ts-node lasgine/build/lasgine.ts",
-    "build:jit": "tsup lasgine/index.ts --format cjs,esm --dts --minify --out-dir dist/lasgine --target node16 --clean"
+    "build:jit": "tsup lasgine/index.ts lasgine/cli.ts --format cjs,esm --dts --minify --out-dir dist/lasgine --target node16 --clean"
   },
   "keywords": [
     "css",
@@ -65,8 +73,9 @@
     "chokidar": "^5.0.0",
     "sass": "^1.94.0",
     "ts-node": "^10.9.2",
+    "tsup": "^8.5.1",
     "typescript": "^5.7.2",
-    "tsup": "^8.5.1"
+    "vite": "^7.2.4"
   },
   "homepage": "https://github.com/serdargoleli/las-ui#readme",
   "repository": {

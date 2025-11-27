@@ -84,6 +84,7 @@
 .grid-cols-2 { grid-template-columns:repeat(2, minmax(0, 1fr)) }
 .bg-white { background-color: #ffffff; }
 .text-gray-900 { color: #15171a; }
+.bg-red-500 { background-color: #ef4444; }
 @media (min-width: 48rem) {
   .md\:grid-cols-2 { grid-template-columns:repeat(2, minmax(0, 1fr)) }
 }

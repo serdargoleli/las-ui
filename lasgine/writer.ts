@@ -2,13 +2,11 @@ import { generateCss } from "./generator";
 import path from "path";
 import fs from "fs";
 
-// output css yazar
-export function writeCSS(usedClasses: Set<string>, cssMap: Map<string, string>, config: any, outputPath: string) {
+// output css string üretir
+export function generateCSSContent(usedClasses: Set<string>, cssMap: Map<string, string>, config: any): string {
     let css = '/* LAS JIT - Auto-generated CSS */\n\n';
 
-    // Breakpoint sırasını config'den al (tanımlama sırasına göre)
-    // Bu sayede px, rem, em gibi birimlere bağımlı kalmadan
-    // config dosyasındaki sıraya göre (sm, md, lg...) sıralama yapılır.
+    // Breakpoint sırasını config'den al
     const screenKeys = Object.keys(config.screens);
 
     // Classları sırala
@@ -23,12 +21,18 @@ export function writeCSS(usedClasses: Set<string>, cssMap: Map<string, string>, 
         }
     });
 
+    return css;
+}
+
+// output css yazar
+export function writeCSS(usedClasses: Set<string>, cssMap: Map<string, string>, config: any, outputPath: string) {
+    const css = generateCSSContent(usedClasses, cssMap, config);
+
     const outputDir = path.dirname(outputPath);
     if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir, { recursive: true });
     }
     fs.writeFileSync(outputPath, css);
-
 }
 
 function getSortOrder(className: string, screenKeys: string[]): number {
