@@ -15,115 +15,94 @@ export const colorPropertyMap: Record<string, string> = {
 
 // Shadow properties that should use CSS variables instead of direct colors
 const SHADOW_PROPERTIES = new Set(["shadow", "text-shadow"]);
-
 const ALLOWED_SHADES = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
 
 export function generateColor(className: string, config: IConfigProps): string | null {
     const parts = className.split('-');
-    // En az 2 parça olmalı (prefix-color), örn: bg-red veya text-white
+    //en az 2 parçalı olmalı bg-red-500 veya bg-white gibi
     if (parts.length < 2) return null;
 
     const prefix = parts[0];
 
-    // Config'de bu prefix aktif mi ve map'te karşılığı var mı?
+    //gelen prefix sassta tanımlı değil veya false ise veya colorPropertyMap'te yoksa (rastgele prefix girdiyse null dön)  
     if (!config.colorPrefix[prefix] || !colorPropertyMap[prefix]) {
         return null;
     }
 
     const cssProperty = colorPropertyMap[prefix];
 
+    //#region Single Colors
     // 1. Single Colors Kontrolü (bg-white, text-black vb.)
     // Bu renkler shade almaz ve direkt kullanılır.
-
-    // parts[1] potansiyel renk adıdır (örn: bg-white -> white)
-    const potentialSingleColor = parts[1];
-
-    // Eğer config.singleColors içinde varsa ve shade belirtilmemişse (parts.length === 2)
-    if (config.singleColors && config.singleColors[potentialSingleColor]) {
+    const singleColorName = parts[1];
+    // Eğer config.singleColors içinde varsa
+    if (config.singleColors && config.singleColors[singleColorName]) {
         // Shade kontrolü: Eğer bg-white-500 yazıldıysa, bu single color mantığına uymaz.
-        // Biz sadece bg-white kabul ediyoruz.
-        if (parts.length === 2) {
-            const hexColor = config.singleColors[potentialSingleColor];
+        if (parts.length == 2) {
+            const hexColor = config.singleColors[singleColorName]
 
-            // Shadow properties için rgb formatına çevir
+            // shadow veya text-shadow ise burada class değil değişken tanımlanır ve rgb olarak tanımlar 
             if (SHADOW_PROPERTIES.has(prefix)) {
                 const rgbValue = hexToRgbString(hexColor);
                 return `${cssProperty}: ${rgbValue};`;
             }
-
+            // SHADOW_PROPERTIES dışında kalan propertyleri hex olarak üretür
             return `${cssProperty}: ${hexColor};`;
         }
-        // Eğer bg-white-500 yazıldıysa, aşağıya düşecek ve palette colors içinde aranacak.
-        // Ama white palette içinde yoksa null dönecek. Bu doğru davranış.
     }
 
+    //#endregion Single Colors
+
+    //#region Palette Colors
     // 2. Palette Colors (bg-red-500 vb.)
-    // Renk ve shade'i bul
     let colorName = parts[1];
-    let shade = 500; // Default shade
+    let shade = 500;
     let hasShade = false;
 
     // Eğer 3 parça varsa (bg-red-500)
     if (parts.length >= 3) {
-        // Son parça sayı mı?
         const lastPart = parts[parts.length - 1];
-        if (/^\d+$/.test(lastPart)) {
+        // Son parça sayı mı?
+        if (isDigitsOnly(lastPart)) {
             const parsedShade = parseInt(lastPart);
-            // Shade geçerli listede mi?
+            // geçerli bir shade ise 
             if (ALLOWED_SHADES.includes(parsedShade)) {
                 shade = parsedShade;
                 hasShade = true;
                 // Renk adı aradaki her şey olabilir (örn: light-blue)
+                //parts 1 prefix sonuncu shade hariç tümünü al
                 colorName = parts.slice(1, -1).join('-');
             } else {
-                return null;
+                return null
             }
         } else {
-            // Sayı değilse, belki sadece renk adıdır (bg-light-blue)
-            colorName = parts.slice(1).join('-');
+            return null
         }
-    } else if (parts.length === 2) {
-        // bg-red gibi shade olmayan durumlar
-        colorName = parts[1];
     }
+    //#endregion Palette Colors
 
-    // Rengi config'den bul
+    // Palette colors must have a shade
+    if (!hasShade) return null;
+
     const hexColor = config.colors[colorName];
+    // girilen renk mevcut renkler arasında yoksa null döndürür
     if (!hexColor) return null;
 
-    // Eğer shade belirtilmemişse (örn: bg-red)
-    // Single color değilse ve shade yoksa HATA (null)
-    if (!hasShade) {
-        // Son bir kontrol: Belki singleColors içinde vardır ama yukarıdaki if'e girmemiştir?
-        // (Gerçi yukarıdaki if'e girmesi lazımdı ama ne olur ne olmaz)
-        if (config.singleColors && config.singleColors[colorName]) {
-            const hexColor = config.singleColors[colorName];
-
-            // Shadow properties için rgb formatına çevir
-            if (SHADOW_PROPERTIES.has(prefix)) {
-                const rgbValue = hexToRgbString(hexColor);
-                return `${cssProperty}: ${rgbValue};`;
-            }
-
-            return `${cssProperty}: ${hexColor};`;
-        }
-        return null;
-    }
 
     // Rengi hesapla
     const finalColor = calculateColor(hexColor, shade);
 
-    // Shadow properties için rgb formatına çevir
-    if (SHADOW_PROPERTIES.has(prefix)) {
-        const rgbValue = hexToRgbString(finalColor);
-        return `${cssProperty}: ${rgbValue};`;
-    }
-
     return `${cssProperty}: ${finalColor};`;
+
 }
 
+
+//#region Helper Functions
 /**
- * Hex rengi "rgb(r g b)" formatına çevirir
+ * @description 
+ * hex kodunu rgb string formatına çevirir
+ * @param hex hex kodu
+ * @returns 
  */
 function hexToRgbString(hex: string): string {
     if (hex === 'transparent') return 'transparent';
@@ -135,11 +114,41 @@ function hexToRgbString(hex: string): string {
     return `rgb(${rgb.r} ${rgb.g} ${rgb.b})`;
 }
 
+/**
+ * @description
+ * hex kodunu rgb formatına çevirir
+ * @param hex hex kodu
+ * @returns 
+ */
+function hexToRgb(hex: string) {
+    // hex kodunu yakalaı
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16), //hex (16’lık) stringi onluk sayıya çevirir. ff -> 255
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
+/**
+ * @description
+ * string sadece rakamlardan oluşuyorsa true döndürür
+ * @param str 
+ * @returns 
+ */
+function isDigitsOnly(str: string): boolean {
+    return /^\d+$/.test(str);
+}
+
+
 function calculateColor(hex: string, shade: number): string {
     if (hex === 'transparent' || hex === 'currentColor') return hex;
 
     // 500 ise direkt rengi döndür
     if (shade === 500) return hex;
+
 
     // 50-950 arası
     if (shade < 500) {
@@ -153,9 +162,9 @@ function calculateColor(hex: string, shade: number): string {
     }
 }
 
-function mixColors(color1: string, color2: string, weight: number): string {
+function mixColors(color1: string, colorTransition: string, weight: number): string {
     const c1 = hexToRgb(color1);
-    const c2 = hexToRgb(color2);
+    const c2 = hexToRgb(colorTransition);
     if (!c1 || !c2) return color1;
 
     const w = weight / 100;
@@ -167,17 +176,7 @@ function mixColors(color1: string, color2: string, weight: number): string {
     return rgbToHex(r, g, b);
 }
 
-function hexToRgb(hex: string) {
-    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
-}
-
 function rgbToHex(r: number, g: number, b: number) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
+//#endregion Helper Functions
