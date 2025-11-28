@@ -1,0 +1,36 @@
+{
+    "name": "@las/vite",
+    "version": "1.0.0",
+    "description": "LASCSS JIT Vite plugin",
+    "type": "module",
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.esm.js",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "clean": "rimraf dist",
+        "dev": "tsc -w -p tsconfig.json"
+    },
+    "peerDependencies": {
+        "vite": ">=2"
+    },
+    "dependencies": {
+        "@las/engine": "workspace:*"
+    },
+    "devDependencies": {
+        "rimraf": "^6.1.2",
+        "typescript": "^5.7.2",
+        "vite": "^7.2.4"
+    },
+    "sideEffects": false
+}

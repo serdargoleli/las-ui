@@ -1,5 +1,17 @@
+# Dependencies
 node_modules/
+
+# Build outputs
 /dist
+dist/
+
+# IDE
 .idea
+
+# OS
 .DS_Store
 /engine/.DS_Store
+
+# PNPM
+pnpm-lock.yaml
+.pnpm-debug.log

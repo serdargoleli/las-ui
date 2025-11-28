@@ -1,0 +1,42 @@
+{
+    "name": "lascss",
+    "version": "0.1.10",
+    "description": "LAS CSS – Utility-first, SCSS-powered modern CSS framework.",
+    "author": "Serdar Göleli",
+    "license": "MIT",
+    "private": false,
+    "main": "dist/style.min.css",
+    "style": "dist/style.min.css",
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "sideEffects": [
+        "**/*.css",
+        "**/*.scss"
+    ],
+    "scripts": {
+        "clean": "rimraf dist && mkdir -p dist",
+        "build:base": "sass base.scss dist/base.min.css --style=compressed --no-source-map",
+        "build:meta": "sass meta.scss dist/meta.min.css --style=compressed --no-source-map",
+        "build:utility": "sass utility.scss dist/utility.min.css --style=compressed --no-source-map",
+        "build:main": "sass main.scss dist/style.min.css --style=compressed --no-source-map",
+        "build": "pnpm run clean && pnpm run build:base && pnpm run build:meta && pnpm run build:utility && pnpm run build:main",
+        "dev": "sass --watch main.scss dist/style.min.css --style=compressed"
+    },
+    "exports": {
+        ".": "./dist/style.min.css",
+        "./style.css": "./dist/style.min.css",
+        "./style.min.css": "./dist/style.min.css",
+        "./base": "./dist/base.min.css",
+        "./meta": "./dist/meta.min.css",
+        "./utility": "./dist/utility.min.css",
+        "./dist/*": "./dist/*",
+        "./package.json": "./package.json"
+    },
+    "devDependencies": {
+        "sass": "^1.72.0",
+        "rimraf": "^5.0.0"
+    }
+}

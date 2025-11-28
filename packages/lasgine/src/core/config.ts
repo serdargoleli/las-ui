@@ -1,4 +1,4 @@
-import { readMetaCSS } from './read';
+import { readMetaCSS } from '../core/read';
 
 export interface IConfigProps {
     screens: Record<string, string>;

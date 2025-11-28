@@ -1,9 +1,9 @@
 
-import { scanDirectory, scanFile } from './scanner';
-import { readBaseCSS, readUtilityCSS } from './read';
-import { parserCSS } from './parser';
-import { loadConfig } from './config';
-import { generateCSSContent } from './writer';
+import { scanDirectory, scanFile } from './core/scanner';
+import { readBaseCSS, readUtilityCSS } from './core/read';
+import { parserCSS } from './core/parser';
+import { loadConfig } from './core/config';
+import { generateCSSContent } from './core/writer';
 import path from 'path';
 import fs from 'fs';
 

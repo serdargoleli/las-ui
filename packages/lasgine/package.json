@@ -1,0 +1,26 @@
+{
+    "name": "@las/engine",
+    "version": "1.0.0",
+    "description": "LAS Engine – JIT class generator for LAS CSS",
+    "private": false,
+    "type": "commonjs",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "dev": "ts-node src/index.ts",
+        "build": "tsup src/index.ts --dts --format cjs,esm --clean --minify",
+        "watch": "ts-node-dev src/index.ts"
+    },
+    "devDependencies": {
+        "ts-node": "^10.9.2",
+        "ts-node-dev": "^2.0.0",
+        "tsup": "^8.0.0",
+        "typescript": "^5.7.2"
+    }
+}

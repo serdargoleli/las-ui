@@ -1,4 +1,4 @@
-import { IConfigProps } from "./config";
+import { IConfigProps } from "../config";
 
 export const colorPropertyMap: Record<string, string> = {
     "bg": "background-color",

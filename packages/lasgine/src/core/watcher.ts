@@ -1,5 +1,5 @@
 import chokidar from 'chokidar';
-import { LasEngine } from './engine';
+import { LasEngine } from '../engine';
 import path from 'path';
 import fs from 'fs';
 
